@@ -5,6 +5,7 @@
  */
 package oopgroupassignment;
 
+import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class PartBQ1 {
         double Product3 = 0;
         double Product4 = 0;
         String membershipstatus = "";   
-        double rebate = 0;
+        //double rebate = 0;
         JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
         
         double discount = 0;
@@ -48,11 +49,31 @@ public class PartBQ1 {
             counter++;
         }
         }
-        String b = JOptionPane.showInputDialog(null,"How many products that you want to purchase?","Membership",JOptionPane.QUESTION_MESSAGE);
+        //JOptionPane.showMessageDialog(null,"------------------------------UNIMY ONLINE STORE-----------------------------\n","Catalog",JOptionPane.INFORMATION_MESSAGE);
+        
+        String message = "------------------------------------------------UNIMY ONLINE STORE----------------------------------------------------\n"
+                + "------------------------------------------------------------------------------------------------------------------------------------\n"
+                + "|\tProduct Code\t|\tProduct\t|\tPrice\t|\n"
+                + "------------------------------------------------------------------------------------------------------------------------------------\n"
+                + "|\t1\t|\tSHOE\t|\tRM 34.55\t|\n"
+                + "|\t2\t|\tSHIRT\t|\tRM 44.29\t|\n"
+                + "|\t3\t|\tPANTS\t|\tRM 64.35\t|\n"
+                + "|\t4\t|\tJEANS\t|\tRM 84.20\t|\n"
+                + "|\t5\t|\tFAN\t|\tRM 51.59\t|\n"
+                + "|\t6\t|\tIRON\t|\tRM 24.45\t|\n"
+                + "|\t7\t|\tTRAY\t|\tRM 51.99\t|\n"
+                + "|\t8\t|\tRICE\t|\tRM 24.76\t|\n"
+                + "------------------------------------------------------------------------------------------------------------------------------------\n";
+
+         
+        
+        JOptionPane.showMessageDialog(null, new JTextArea(message),"Catalog",JOptionPane.PLAIN_MESSAGE);
+        
+        String b = JOptionPane.showInputDialog(null,"How many products that you want to purchase?","Product Purchasing",JOptionPane.QUESTION_MESSAGE);
         int NoProduct = Integer.parseInt(b);
         //int ProductDiscount = 0;
         
-        while(NoProduct>0){
+        for(int i = 0; i < NoProduct ; i++){
             String ProductCode = JOptionPane.showInputDialog(null,"Please enter product code :","Product Code",JOptionPane.QUESTION_MESSAGE);
             
             //int counter = 1;
@@ -113,13 +134,13 @@ public class PartBQ1 {
 //          */
             
             
-            NoProduct -= ProductQuantity;
+            // NoProduct -= ProductQuantity;
             System.out.println(ProductQuantity);
             totalprice += (price*ProductQuantity);
             totalquantity += ProductQuantity;
         }
         
-        
+        /*
         if(Product1 > 200)
             rebate += 25;
         if(Product3 > 200)
@@ -127,7 +148,7 @@ public class PartBQ1 {
         if(Product4 > 200)
             rebate += 25;
         
-        
+        */
             
         
         
@@ -166,6 +187,7 @@ public class PartBQ1 {
         double NewTotalPrice = Double.parseDouble(df.format(TotalPrice));
         String e = JOptionPane.showInputDialog(null,"Total Price = RM"+NewTotalPrice+"\nEnter amount of your payment :","Payment",JOptionPane.QUESTION_MESSAGE);
         double pay = Double.parseDouble(e);
+        double balance = pay - TotalPrice;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("\n\nyyyy/MM/dd HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	System.out.println(dtf.format(now)); //2016/11/16 12:08:43
@@ -188,6 +210,8 @@ public class PartBQ1 {
         System.out.println("Government Service Tax = 6%");
         System.out.print("-----------------------------------------------------------------------------\n");
         System.out.printf("Net Purchased = RM %.2f \n",TotalPrice);
+        System.out.println("Amount paid (cash) = RM " + pay);
+        System.out.printf("Change = RM %.2f \n",balance);
         //amount paid
         //balance
         
