@@ -8,6 +8,7 @@ package oopgroupassignment;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.text.*;
 
 /**
  *
@@ -161,6 +162,10 @@ public class PartBQ1 {
         //System.out.println("TotalPrice = "+TotalPrice);
         TotalPrice = TotalPrice + (TotalPrice*0.06);
         
+        DecimalFormat df = new DecimalFormat("#.##");
+        double NewTotalPrice = Double.parseDouble(df.format(TotalPrice));
+        String e = JOptionPane.showInputDialog(null,"Total Price = RM"+NewTotalPrice+"\nEnter amount of your payment :","Payment",JOptionPane.QUESTION_MESSAGE);
+        double pay = Double.parseDouble(e);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("\n\nyyyy/MM/dd HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	System.out.println(dtf.format(now)); //2016/11/16 12:08:43
