@@ -34,31 +34,30 @@ public class PartBQ1 {
         String membershipstatus = "";
         String ProductCode = "";
         double rebate = 0;
-        JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
-        
         double discount = 0;
-        
+        double discount1 = 0;
         int counter =1;
         
-        while(counter > 0){
-            
-        String a = JOptionPane.showInputDialog(null,"Do you have membership card? \nA. Yes\nB. No","Membership",JOptionPane.QUESTION_MESSAGE);
-        char membership = a.charAt(0);    
+        JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
         
             
-        if((membership == 'A')||(membership == 'a')){
+        //String a = JOptionPane.showInputDialog(null,"Do you have membership card? \nA. Yes\nB. No","Membership",JOptionPane.QUESTION_MESSAGE);
+        //char membership = a.charAt(0);    
+        
+        int a = JOptionPane.showConfirmDialog(null,
+            "Do you have membership card?",
+            "Choose One",
+            JOptionPane.YES_NO_OPTION);
+            
+        if(true){
             discount = 0.1;
-            counter = 0;
+            
             membershipstatus= "Yes";
-        }else if((membership == 'B') || (membership == 'b')){
-            discount = 0;
-            counter = 0;
-            membershipstatus = "No";
         }else{
             JOptionPane.showMessageDialog(null,"Please enter A or B only !","Membership",JOptionPane.WARNING_MESSAGE);
-            counter++;
+            
         }
-        }
+        
         //JOptionPane.showMessageDialog(null,"------------------------------UNIMY ONLINE STORE-----------------------------\n","Catalog",JOptionPane.INFORMATION_MESSAGE);
         
         String message = "------------------------------------------------UNIMY ONLINE STORE----------------------------------------------------\n"
@@ -152,7 +151,7 @@ public class PartBQ1 {
                 }
                 
             }
-            System.out.print("price = "+price+" ");
+            
             String d = JOptionPane.showInputDialog(null,"Please enter the quantity of product that you want to purchase:","Quantity",JOptionPane.QUESTION_MESSAGE);
             int ProductQuantity = Integer.parseInt(d);
             Quantity.add(ProductQuantity);
@@ -173,41 +172,24 @@ public class PartBQ1 {
             }
             
 
-            double total = price*ProductQuantity;
+            double TotalQ = price*ProductQuantity;
+            
+            DecimalFormat df = new DecimalFormat("#.##");
+            double total = Double.parseDouble(df.format(TotalQ));
+            
             Total.add(total);
             totalprice += total;
             totalquantity += ProductQuantity;
         }
         
-        if(Product1 > 200)
-            rebate += 25;
-        else if(Product3 > 200)
-            rebate += 25;
-        else if(Product4 > 200)
-            rebate += 25;
-        
-        double discount1 = 0;
-        if((totalprice>200)&&(totalprice<=500)){
-            discount1 = 0.1;
-        }else if((totalprice > 500)&&(totalprice<=1000)){
-            discount1 = 0.2;
-        }else if((totalprice > 1000)&&(totalprice<=2000)){
-            discount1 = 0.3;
-        }else if(totalprice > 2000){
-            discount1 = 0.5;
-        }else{
-            discount1 = 0;
-        }
-        
+        discounts(Product1,Product3, Product4, rebate, totalprice, discount1);
         
         if (rebate != 0)
             totalprice = totalprice - rebate;
         
         
         double TotalPrice = totalprice - (totalprice*discount);
-        //System.out.println("TotalPrice = "+TotalPrice);
         TotalPrice = TotalPrice - (TotalPrice*discount1);
-        //System.out.println("TotalPrice = "+TotalPrice);
         TotalPrice = TotalPrice + (TotalPrice*0.06);
         
         DecimalFormat df = new DecimalFormat("#.##");
@@ -220,12 +202,47 @@ public class PartBQ1 {
         double pay = Double.parseDouble(e);
         if(pay>=NewTotalPrice){
         
-        double balance = pay - TotalPrice;
+            double balance = pay - TotalPrice;
+            display( code, product, Price, Quantity, Total, NoProduct, totalquantity, membershipstatus, totalprice, rebate, discount1, NewTotalPrice, pay, balance);
+            counter = 0;
+        }else{
+            JOptionPane.showMessageDialog(null,"Insufficient payment!","Warning",JOptionPane.INFORMATION_MESSAGE);
+            counter++;
+        }
+        }
+    }
+    
+    public static void discounts(double Product1,double Product3,double Product4, double rebate,double totalprice, double discount1){
+        
+        
+        if(Product1 > 200)
+            rebate += 25;
+        else if(Product3 > 200)
+            rebate += 25;
+        else if(Product4 > 200)
+            rebate += 25;
+        
+        
+        if((totalprice>200)&&(totalprice<=500)){
+            discount1 = 0.1;
+        }else if((totalprice > 500)&&(totalprice<=1000)){
+            discount1 = 0.2;
+        }else if((totalprice > 1000)&&(totalprice<=2000)){
+            discount1 = 0.3;
+        }else if(totalprice > 2000){
+            discount1 = 0.5;
+        }else{
+            discount1 = 0;
+        }
+    }
+    
+    public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct, int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("\n\nyyyy/MM/dd HH:mm:ss");
-	LocalDateTime now = LocalDateTime.now();
-	System.out.println(dtf.format(now)); //2016/11/16 12:08:43
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now)); //2016/11/16 12:08:43
         System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");
         System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n");
+        System.out.print("-----------------------------------------------------------------------------\n");
         for(int a = 0 ; a < NoProduct; a++){
             System.out.println(code.get(a)+"\t\t"+product.get(a)+"\t\t"+Price.get(a)+"\t\t"+Quantity.get(a)+"\t\t"+Total.get(a));
         }
@@ -240,23 +257,18 @@ public class PartBQ1 {
             System.out.println("Membership Discount = 0%");
         }
         
-        System.out.printf("Total Purchased = RM %.2f \n",totalprice);
-        System.out.println("Rebate = RM "+rebate);
-        System.out.println("Discount = " + (int)(discount1*100) + "%");
-        System.out.println("Government Service Tax = 6%");
-        System.out.print("-----------------------------------------------------------------------------\n");
-        System.out.printf("Net Purchased = RM %.2f \n",TotalPrice);
-        System.out.println("Amount paid (cash) = RM " + pay);
-        System.out.printf("Change = RM %.2f \n",balance);
-        //amount paid
-        //balance
+            System.out.printf("Total Purchased = RM %.2f \n",totalprice);
+            System.out.printf("Rebate = RM %.2f \n",rebate);
+            System.out.println("Discount = " + (int)(discount1*100) + "%");
+            System.out.println("Government Service Tax = 6%");
+            System.out.print("-----------------------------------------------------------------------------\n");
+            System.out.printf("Net Purchased = RM %.2f \n",NewTotalPrice);
+            System.out.printf("Amount paid (cash) = RM %.2f \n", pay);
+            System.out.printf("Change = RM %.2f \n",balance);
+            
         
-        System.out.print("-----------------------------------------------------------------------------\n");
-        counter = 0;
-    }else{
-        JOptionPane.showMessageDialog(null,"Insufficient payment!","Warning",JOptionPane.INFORMATION_MESSAGE);
-        counter++;
+            System.out.print("-----------------------------------------------------------------------------\n");
     }
-    }
-    }
+    
+    
 }
