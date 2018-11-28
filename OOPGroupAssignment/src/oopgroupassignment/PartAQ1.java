@@ -1,7 +1,7 @@
 /**
  * Lottery Machine
- * (Description
- *    )
+ * (Description. Machine generate a three digit number. User will guess the number and try to key in the number. 
+ * Different outcomes will arise based on the accuracy of the input compared to the generated number.)
  * @Aiman the Code King (Aiman Syakirin Basri - B04180049)
  * @version 1.0
  */
@@ -10,6 +10,7 @@ package oopgroupassignment;
 
 import javax.swing.*;
 import java.util.*;
+import java.util.ArrayList;
 
 public class PartAQ1 {
     
@@ -33,23 +34,19 @@ public class PartAQ1 {
 
         public Seperator() {
         }
-    
     }
     
     public static void main(String[] args) {
         
         int lot = (int) (Math.random()*1000);
-        System.out.printf("%3d\n",lot);
 
         Seperator lotnumber= new Seperator();
         lotnumber.Seperate(lot);
-            {
+            
              ArrayList lottery = new ArrayList();
              lottery.add(digit1);
              lottery.add(digit2);
              lottery.add(digit3);
-             System.out.println(lottery);
-            }
 
          String Strinput= JOptionPane.showInputDialog(null, "Please insert a three digit number", "LOTTERY",JOptionPane.QUESTION_MESSAGE);
          int Intinput = Integer.parseInt(Strinput);
@@ -60,17 +57,22 @@ public class PartAQ1 {
         Seperator inputnumber= new Seperator();
         inputnumber.Seperate(Intinput);
 
-            {
              ArrayList input= new ArrayList();
              input.add(digit1);
              input.add(digit2);
              input.add(digit3);
-             System.out.println(input);
+            
+            
+            boolean retval= input.containsAll(lottery);
+            
+            if (Objects.equals(input, lottery)){
+                JOptionPane.showMessageDialog(null,"Congrats, you just won RM5000!\nLottery number: "+lot, "Award", JOptionPane.INFORMATION_MESSAGE);
+            }else if (retval == true){
+                JOptionPane.showMessageDialog(null,"You just won RM2000. Not bad!\nLottery number: "+lot, "Award", JOptionPane.INFORMATION_MESSAGE); 
+            }else if (input.get(0)==(lottery.get(0))||input.get(1)==(lottery.get(1))|| input.get(2)==(lottery.get(2)))     {
+                  JOptionPane.showMessageDialog(null,"You just won RM500.\nLottery number: "+lot, "Award", JOptionPane.INFORMATION_MESSAGE); 
+            }else{
+                JOptionPane.showMessageDialog(null,"Not your lucky day "+":("+" Try again.\nLottery number: "+lot, "Award", JOptionPane.INFORMATION_MESSAGE); 
             }
-
-     if (input==lottery)
-       //     JOptionPane.showMessageDialog(null,"You just won RM5000!", "Award", JOptionPane.INFORMATION_MESSAGE);
-         //   JOptionPane.showMessageDialog(null,"You just won RM2000!", "Award", JOptionPane.INFORMATION_MESSAGE);    
-          //  JOptionPane.showMessageDialog(null,"You just won RM500!", "Award", JOptionPane.INFORMATION_MESSAGE);
     }
 }
