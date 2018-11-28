@@ -68,7 +68,7 @@ public class PartAQ1 {
              System.out.println(input);
             }
 
-     if (input==lottery)
+    // if (input==lottery)
        //     JOptionPane.showMessageDialog(null,"You just won RM5000!", "Award", JOptionPane.INFORMATION_MESSAGE);
          //   JOptionPane.showMessageDialog(null,"You just won RM2000!", "Award", JOptionPane.INFORMATION_MESSAGE);    
           //  JOptionPane.showMessageDialog(null,"You just won RM500!", "Award", JOptionPane.INFORMATION_MESSAGE);
