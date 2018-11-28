@@ -5,6 +5,7 @@
  */
 package oopgroupassignment;
 
+import java.util.ArrayList;
 import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
@@ -17,13 +18,22 @@ import java.text.*;
  */
 public class PartBQ1 {
     public static void main(String[] args){
+        
+        ArrayList product = new ArrayList();
+        ArrayList code = new ArrayList();
+        ArrayList Price = new ArrayList();
+        ArrayList Quantity = new ArrayList();
+        ArrayList Total = new ArrayList();
+        
+        double price =0;
         double totalprice = 0;
         int totalquantity = 0;
         double Product1 = 0;
         double Product3 = 0;
         double Product4 = 0;
-        String membershipstatus = "";   
-        //double rebate = 0;
+        String membershipstatus = "";
+        String ProductCode = "";
+        double rebate = 0;
         JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
         
         double discount = 0;
@@ -74,85 +84,107 @@ public class PartBQ1 {
         //int ProductDiscount = 0;
         
         for(int i = 0; i < NoProduct ; i++){
-            String ProductCode = JOptionPane.showInputDialog(null,"Please enter product code :","Product Code",JOptionPane.QUESTION_MESSAGE);
+                
+            counter = 1;
             
-            //int counter = 1;
-            
-           // while(counter>0){
-                double price =0;
+           while(counter>0){
+                ProductCode = JOptionPane.showInputDialog(null,"Please enter product code :","Product Code",JOptionPane.QUESTION_MESSAGE);
                 switch(ProductCode){
                     case "1":
                         price = 34.55;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("1");
+                        product.add("SHOE");
+                        Price.add("34.55");
                         break;
                     case "2":
                         price = 44.29;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("2");
+                        product.add("SHIRT");
+                        Price.add("44.29");
                         break;
                     case "3":
                         price = 64.35;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("3");
+                        product.add("PANTS");
+                        Price.add("64.35");
                         break;
                     case "4":
                         price = 84.20;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("4");
+                        product.add("JEANS");
+                        Price.add("84.20");
                         break;
                     case "5":
                         price = 51.59;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("5");
+                        product.add("FAN");
+                        Price.add("51.59");
                         break;
                     case "6":
                         price = 24.45;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("6");
+                        product.add("IRON");
+                        Price.add("24.45");
                         break;
                     case "7":
                         price = 51.99;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("7");
+                        product.add("TRAY");
+                        Price.add("51.99");
                         break;
                     case "8":
                         price = 24.76;
-                        //counter = 0;
+                        counter = 0;
+                        code.add("8");
+                        product.add("RICE");
+                        Price.add("24.76");
                         break;
                     default:
-                        System.out.println("Please enter a valid product code!");
-                        //counter++;
+                        JOptionPane.showMessageDialog(null,"Please enter a valid product code!","Warning",JOptionPane.WARNING_MESSAGE);
+                        counter++;
                 }
-            //}
-            System.out.print("price = "+price+" ");
-            String d = JOptionPane.showInputDialog(null,"Please enter the quantity of product that you want to purchase:","Membership",JOptionPane.QUESTION_MESSAGE);
-            int ProductQuantity = Integer.parseInt(d);
-            
-            /*
-            if(ProductCode == "1"){
-                Product1 = (price*ProductQuantity);
-            }else if(ProductCode == "3"){
-                Product3 = (price*ProductQuantity);
-            }else if(ProductCode == "4"){
-                Product4 = (price*ProductQuantity);
-                System.out.println(Product4);
+                
             }
-//          */
+            System.out.print("price = "+price+" ");
+            String d = JOptionPane.showInputDialog(null,"Please enter the quantity of product that you want to purchase:","Quantity",JOptionPane.QUESTION_MESSAGE);
+            int ProductQuantity = Integer.parseInt(d);
+            Quantity.add(ProductQuantity);
             
+            switch (ProductCode) {
+                case "1":
+                    Product1 = (price*ProductQuantity);
+                    break;
+                case "3":
+                    Product3 = (price*ProductQuantity);
+                    break;
+                case "4":
+                    Product4 = (price*ProductQuantity);
+                    //System.out.println(price);
+                    break;
+                default:
+                    break;
+            }
             
-            // NoProduct -= ProductQuantity;
-            System.out.println(ProductQuantity);
-            totalprice += (price*ProductQuantity);
+
+            double total = price*ProductQuantity;
+            Total.add(total);
+            totalprice += total;
             totalquantity += ProductQuantity;
         }
         
-        /*
         if(Product1 > 200)
             rebate += 25;
-        if(Product3 > 200)
+        else if(Product3 > 200)
             rebate += 25;
-        if(Product4 > 200)
+        else if(Product4 > 200)
             rebate += 25;
-        
-        */
-            
-        
-        
-        //double TotalPrice = totalprice - (totalprice*discount);
         
         double discount1 = 0;
         if((totalprice>200)&&(totalprice<=500)){
@@ -168,14 +200,9 @@ public class PartBQ1 {
         }
         
         
-        //System.out.println("discount1 = " + discount1);
-        /*
-        if (rebate == 0){
-            TotalPrice = TotalPrice - 0;
-        }else{
-            TotalPrice = TotalPrice - rebate;
-        }
-        */
+        if (rebate != 0)
+            totalprice = totalprice - rebate;
+        
         
         double TotalPrice = totalprice - (totalprice*discount);
         //System.out.println("TotalPrice = "+TotalPrice);
@@ -185,14 +212,23 @@ public class PartBQ1 {
         
         DecimalFormat df = new DecimalFormat("#.##");
         double NewTotalPrice = Double.parseDouble(df.format(TotalPrice));
+        
+        
+        counter = 1;
+        while(counter>0){
         String e = JOptionPane.showInputDialog(null,"Total Price = RM"+NewTotalPrice+"\nEnter amount of your payment :","Payment",JOptionPane.QUESTION_MESSAGE);
         double pay = Double.parseDouble(e);
+        if(pay>=NewTotalPrice){
+        
         double balance = pay - TotalPrice;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("\n\nyyyy/MM/dd HH:mm:ss");
 	LocalDateTime now = LocalDateTime.now();
 	System.out.println(dtf.format(now)); //2016/11/16 12:08:43
         System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");
-        System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n\n");
+        System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n");
+        for(int a = 0 ; a < NoProduct; a++){
+            System.out.println(code.get(a)+"\t\t"+product.get(a)+"\t\t"+Price.get(a)+"\t\t"+Quantity.get(a)+"\t\t"+Total.get(a));
+        }
         System.out.print("-----------------------------------------------------------------------------\n");
         
         System.out.println("Total items quantity = "+totalquantity);
@@ -205,8 +241,8 @@ public class PartBQ1 {
         }
         
         System.out.printf("Total Purchased = RM %.2f \n",totalprice);
-        //System.out.println("Rebate = RM "+rebate);
-        System.out.println("Discount = " + discount1*100 + "%");
+        System.out.println("Rebate = RM "+rebate);
+        System.out.println("Discount = " + (int)(discount1*100) + "%");
         System.out.println("Government Service Tax = 6%");
         System.out.print("-----------------------------------------------------------------------------\n");
         System.out.printf("Net Purchased = RM %.2f \n",TotalPrice);
@@ -216,5 +252,11 @@ public class PartBQ1 {
         //balance
         
         System.out.print("-----------------------------------------------------------------------------\n");
+        counter = 0;
+    }else{
+        JOptionPane.showMessageDialog(null,"Insufficient payment!","Warning",JOptionPane.INFORMATION_MESSAGE);
+        counter++;
+    }
+    }
     }
 }
