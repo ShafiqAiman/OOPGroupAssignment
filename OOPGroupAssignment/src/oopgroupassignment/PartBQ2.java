@@ -50,11 +50,18 @@ public class PartBQ2 {
         double TCHours = 0;
         float points = 0;
         String status = "";
+        
         int TotalIS = 0;
         int TotalCM = 0;
         int TotalIM = 0;
         int TotalMT = 0;
         int TotalID = 0;
+        
+        float averageIS = 0;
+        float averageCM = 0;
+        float averageIM = 0;
+        float averageMT = 0;
+        float averageID = 0;
         
         
         
@@ -146,8 +153,67 @@ public class PartBQ2 {
             
         }
         
-        System.out.println("Summary");
+        System.out.println("Summary\n");
         
+        averageIS = TotalIS/NoStudents;
+        averageCM = TotalCM/NoStudents;
+        averageIM = TotalIM/NoStudents;
+        averageMT = TotalMT /NoStudents;
+        averageID = TotalID/NoStudents;
+        
+        System.out.printf("Intro to Information System :\t %.2f \n",averageIS);
+        System.out.printf("C++ Programming I :\t\t %.2f \n",averageCM);
+        System.out.printf("Interactive Multimedia :\t %.2f \n",averageIM); 
+        System.out.printf("Multimedia Technology :\t\t %.2f \n",averageMT);
+        System.out.printf("Interaction Design :\t\t %.2f \n\n",averageID);
+        
+        double highest=averageIS;//this if and else statement determines which is the highest by comparing each other
+        if(averageCM>highest){
+           highest=averageCM;
+           }
+         if(averageIM>highest){
+           highest=averageIM;
+           }
+        if(averageMT>highest){
+           highest=averageMT;
+           }
+        if(averageID>highest){
+           highest=averageID;
+           }
+        double lowest=averageIS;//this if and else statement determines which is the lowest by comparing each other
+        if(averageCM<lowest){
+           lowest=averageCM;
+           }
+         if(averageIM<lowest){
+           highest=averageIM;
+           }
+        if(averageMT<lowest){
+           highest=averageMT;
+           }
+        if(averageID<lowest){
+           highest=averageID;
+           }
+        else if(highest==averageIS)//this if statements identify the best subject
+            System.out.println("Best Subject :Intro to Information System");
+        else if(highest==averageCM)
+            System.out.println("Best Subject :C++ Programming");
+        else if(highest==averageIM)
+            System.out.println("Best Subject :Interactive Multimedia");
+        else if(highest==averageMT)
+            System.out.println("Best Subject :Multimedia Technology");
+        else if(highest==averageID)
+            System.out.println("Best Subject :Interaction Design");
+        
+        if(lowest==averageIS)//this if statements identify the worst subjects
+            System.out.println("Worst Subject :Intro to Information System");
+        else if(lowest==averageCM)
+            System.out.println("Worst Subject :C++ Programming");
+        else if(lowest==averageIM)
+            System.out.println("Worst Subject :Interactive Multimedia");
+        else if(lowest==averageMT)
+            System.out.println("Worst Subject :Multimedia Technology");
+        else if(lowest==averageID)
+            System.out.println("Worst Subject :Interaction Design");
     }
     
     public static class Subject{
