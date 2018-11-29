@@ -56,12 +56,13 @@ public class PartBQ1 {
             "Choose One",
             JOptionPane.YES_NO_OPTION);
             
-        if(true){
+        if(a == JOptionPane.YES_OPTION){
             discount = 0.1;
             
             membershipstatus= "Yes";
         }else{
-            JOptionPane.showMessageDialog(null,"Please enter A or B only !","Membership",JOptionPane.WARNING_MESSAGE);
+            discount = 0;
+            membershipstatus = "No";
             
         }
         
@@ -267,7 +268,8 @@ public class PartBQ1 {
         return rebate;
     }
     
-    public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct, int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
+    public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct,
+            int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
         Date now = new Date(); // date and time of purchase
         System.out.println(now); //2016/11/16 12:08:43
         System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");//display output
