@@ -25,6 +25,17 @@ public class PartBQ1 {
         ArrayList Quantity = new ArrayList();
         ArrayList Total = new ArrayList();
         
+        Product SHOE = new Product("1", "SHOE", 34.55);
+        Product SHIRT = new Product("2","SHIRT",44.29);
+        Product PANTS = new Product("3","PANTS",64.35);
+        Product JEANS = new Product("4","JEANS",84.20);
+        Product FAN = new Product("5","FAN",51.59);
+        Product IRON = new Product("6","IRON",24.25);
+        Product TRAY = new Product("7","TRAY",51.99);
+        Product RICE = new Product("8","RICE",24.76);
+        
+        
+        
         double price =0;
         double totalprice = 0;
         int totalquantity = 0;
@@ -92,58 +103,58 @@ public class PartBQ1 {
                     case "1":
                         price = 34.55;
                         counter = 0;
-                        code.add("1");
-                        product.add("SHOE");
-                        Price.add("34.55");
+                        code.add(SHOE.code1);
+                        product.add(SHOE.product1);
+                        Price.add(SHOE.price1);
                         break;
                     case "2":
                         price = 44.29;
                         counter = 0;
-                        code.add("2");
-                        product.add("SHIRT");
-                        Price.add("44.29");
+                        code.add(SHIRT.code1);
+                        product.add(SHIRT.product1);
+                        Price.add(SHIRT.price1);
                         break;
                     case "3":
                         price = 64.35;
                         counter = 0;
-                        code.add("3");
-                        product.add("PANTS");
-                        Price.add("64.35");
+                        code.add(PANTS.code1);
+                        product.add(PANTS.product1);
+                        Price.add(PANTS.price1);
                         break;
                     case "4":
                         price = 84.20;
                         counter = 0;
-                        code.add("4");
-                        product.add("JEANS");
-                        Price.add("84.20");
+                        code.add(JEANS.code1);
+                        product.add(JEANS.product1);
+                        Price.add(JEANS.price1);
                         break;
                     case "5":
                         price = 51.59;
                         counter = 0;
-                        code.add("5");
-                        product.add("FAN");
-                        Price.add("51.59");
+                        code.add(JEANS.code1);
+                        product.add(JEANS.product1);
+                        Price.add(JEANS.price1);
                         break;
                     case "6":
                         price = 24.45;
                         counter = 0;
-                        code.add("6");
-                        product.add("IRON");
-                        Price.add("24.45");
+                        code.add(IRON.code1);
+                        product.add(IRON.product1);
+                        Price.add(IRON.price1);
                         break;
                     case "7":
                         price = 51.99;
                         counter = 0;
-                        code.add("7");
-                        product.add("TRAY");
-                        Price.add("51.99");
+                        code.add(TRAY.code1);
+                        product.add(TRAY.product1);
+                        Price.add(TRAY.price1);
                         break;
                     case "8":
                         price = 24.76;
                         counter = 0;
-                        code.add("8");
-                        product.add("RICE");
-                        Price.add("24.76");
+                        code.add(RICE.code1);
+                        product.add(RICE.product1);
+                        Price.add(RICE.price1);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null,"Please enter a valid product code!","Warning",JOptionPane.WARNING_MESSAGE);
@@ -165,10 +176,9 @@ public class PartBQ1 {
                     break;
                 case "4":
                     Product4 = (price*ProductQuantity);
-                    //System.out.println(price);
+                    
                     break;
-                default:
-                    break;
+                
             }
             
 
@@ -181,8 +191,14 @@ public class PartBQ1 {
             totalprice += total;
             totalquantity += ProductQuantity;
         }
+        System.out.println(Product1);
+        System.out.println(Product3);
         
-        discounts(Product1,Product3, Product4, rebate, totalprice, discount1);
+        
+        rebate = discounts(Product1,Product3, Product4, rebate, totalprice, discount1);
+        
+        System.out.println(rebate);
+        System.out.println(discount1*100);
         
         if (rebate != 0)
             totalprice = totalprice - rebate;
@@ -212,7 +228,20 @@ public class PartBQ1 {
         }
     }
     
-    public static void discounts(double Product1,double Product3,double Product4, double rebate,double totalprice, double discount1){
+    public static class Product{
+        String code1;
+        String product1;
+        double price1;
+       
+        
+        Product(String code1, String product1, double price1){
+            this.code1 = code1;
+            this.product1 = product1;
+            this.price1 = price1;
+            
+        }
+    }
+    public static double discounts(double Product1,double Product3,double Product4, double rebate,double totalprice, double discount1){
         
         
         if(Product1 > 200)
@@ -222,6 +251,7 @@ public class PartBQ1 {
         else if(Product4 > 200)
             rebate += 25;
         
+        System.out.println(rebate);
         
         if((totalprice>200)&&(totalprice<=500)){
             discount1 = 0.1;
@@ -234,6 +264,9 @@ public class PartBQ1 {
         }else{
             discount1 = 0;
         }
+        
+        System.out.println(discount1*100);
+        return rebate;
     }
     
     public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct, int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
