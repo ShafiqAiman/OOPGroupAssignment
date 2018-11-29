@@ -8,8 +8,7 @@ package oopgroupassignment;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.text.*;
 
 /**
@@ -191,14 +190,26 @@ public class PartBQ1 {
             totalprice += total;
             totalquantity += ProductQuantity;
         }
-        System.out.println(Product1);
-        System.out.println(Product3);
+        //System.out.println(Product1);
+        //System.out.println(Product3);
         
         
-        rebate = discounts(Product1,Product3, Product4, rebate, totalprice, discount1);
+        rebate = discounts(Product1,Product3, Product4, rebate);
         
-        System.out.println(rebate);
-        System.out.println(discount1*100);
+        if((totalprice>200)&&(totalprice<=500)){
+            discount1 = 0.1;
+        }else if((totalprice > 500)&&(totalprice<=1000)){
+            discount1 = 0.2;
+        }else if((totalprice > 1000)&&(totalprice<=2000)){
+            discount1 = 0.3;
+        }else if(totalprice > 2000){
+            discount1 = 0.5;
+        }else{
+            discount1 = 0;
+        }
+        
+        //System.out.println(rebate);
+        //System.out.println(discount1*100);
         
         if (rebate != 0)
             totalprice = totalprice - rebate;
@@ -241,7 +252,7 @@ public class PartBQ1 {
             
         }
     }
-    public static double discounts(double Product1,double Product3,double Product4, double rebate,double totalprice, double discount1){
+    public static double discounts(double Product1,double Product3,double Product4, double rebate){
         
         
         if(Product1 > 200)
@@ -251,28 +262,15 @@ public class PartBQ1 {
         else if(Product4 > 200)
             rebate += 25;
         
-        System.out.println(rebate);
+        //System.out.println(rebate);
         
-        if((totalprice>200)&&(totalprice<=500)){
-            discount1 = 0.1;
-        }else if((totalprice > 500)&&(totalprice<=1000)){
-            discount1 = 0.2;
-        }else if((totalprice > 1000)&&(totalprice<=2000)){
-            discount1 = 0.3;
-        }else if(totalprice > 2000){
-            discount1 = 0.5;
-        }else{
-            discount1 = 0;
-        }
         
-        System.out.println(discount1*100);
         return rebate;
     }
     
     public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct, int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("\n\nyyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(dtf.format(now)); //2016/11/16 12:08:43
+        Date now = new Date();
+        System.out.println(now); //2016/11/16 12:08:43
         System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");
         System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n");
         System.out.print("-----------------------------------------------------------------------------\n");
