@@ -17,13 +17,13 @@ import java.text.*;
  */
 public class PartBQ1 {
     public static void main(String[] args){
-        
+        //ArrayList is used to store data of products,codes,prices,quantities and total
         ArrayList product = new ArrayList();
         ArrayList code = new ArrayList();
         ArrayList Price = new ArrayList();
         ArrayList Quantity = new ArrayList();
         ArrayList Total = new ArrayList();
-        
+        //Product is a class which consists SHOE,SHIRT,PANTS,JEANS,FAN,IRON,TRAY,RICE for object oriented programming technique
         Product SHOE = new Product("1", "SHOE", 34.55);
         Product SHIRT = new Product("2","SHIRT",44.29);
         Product PANTS = new Product("3","PANTS",64.35);
@@ -32,7 +32,7 @@ public class PartBQ1 {
         Product IRON = new Product("6","IRON",24.25);
         Product TRAY = new Product("7","TRAY",51.99);
         Product RICE = new Product("8","RICE",24.76);
-        
+        //The objects consist code,product and price which are fixed values
         
         
         double price =0;
@@ -47,13 +47,10 @@ public class PartBQ1 {
         double discount = 0;
         double discount1 = 0;
         int counter =1;
-        
+        //welcoming window
         JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
-        
-            
-        //String a = JOptionPane.showInputDialog(null,"Do you have membership card? \nA. Yes\nB. No","Membership",JOptionPane.QUESTION_MESSAGE);
-        //char membership = a.charAt(0);    
-        
+         
+        //window for asking the membership
         int a = JOptionPane.showConfirmDialog(null,
             "Do you have membership card?",
             "Choose One",
@@ -68,7 +65,7 @@ public class PartBQ1 {
             
         }
         
-        //JOptionPane.showMessageDialog(null,"------------------------------UNIMY ONLINE STORE-----------------------------\n","Catalog",JOptionPane.INFORMATION_MESSAGE);
+        //displaying menu
         
         String message = "------------------------------------------------UNIMY ONLINE STORE----------------------------------------------------\n"
                 + "------------------------------------------------------------------------------------------------------------------------------------\n"
@@ -87,24 +84,25 @@ public class PartBQ1 {
          
         
         JOptionPane.showMessageDialog(null, new JTextArea(message),"Catalog",JOptionPane.PLAIN_MESSAGE);
-        
+        //number of purchased products
         String b = JOptionPane.showInputDialog(null,"How many products that you want to purchase?","Product Purchasing",JOptionPane.QUESTION_MESSAGE);
         int NoProduct = Integer.parseInt(b);
-        //int ProductDiscount = 0;
+       
         
         for(int i = 0; i < NoProduct ; i++){
                 
             counter = 1;
             
            while(counter>0){
+               //asking product code
                 ProductCode = JOptionPane.showInputDialog(null,"Please enter product code :","Product Code",JOptionPane.QUESTION_MESSAGE);
                 switch(ProductCode){
                     case "1":
                         price = 34.55;
                         counter = 0;
-                        code.add(SHOE.code1);
-                        product.add(SHOE.product1);
-                        Price.add(SHOE.price1);
+                        code.add(SHOE.code1);//code1 is the data stored in SHOE object
+                        product.add(SHOE.product1);//product1 is the data stored in SHOE object
+                        Price.add(SHOE.price1);//price1 is the data stored in SHOE object
                         break;
                     case "2":
                         price = 44.29;
@@ -156,16 +154,18 @@ public class PartBQ1 {
                         Price.add(RICE.price1);
                         break;
                     default:
+                        //unexpected error
                         JOptionPane.showMessageDialog(null,"Please enter a valid product code!","Warning",JOptionPane.WARNING_MESSAGE);
                         counter++;
                 }
                 
             }
-            
+            //asking quantity
             String d = JOptionPane.showInputDialog(null,"Please enter the quantity of product that you want to purchase:","Quantity",JOptionPane.QUESTION_MESSAGE);
             int ProductQuantity = Integer.parseInt(d);
+            //quantity will be stored in arraylist
             Quantity.add(ProductQuantity);
-            
+            //to find the total of products that can get rebate
             switch (ProductCode) {
                 case "1":
                     Product1 = (price*ProductQuantity);
@@ -182,7 +182,7 @@ public class PartBQ1 {
             
 
             double TotalQ = price*ProductQuantity;
-            
+            //converting totalQ to 2 decimal points
             DecimalFormat df = new DecimalFormat("#.##");
             double total = Double.parseDouble(df.format(TotalQ));
             
@@ -190,10 +190,9 @@ public class PartBQ1 {
             totalprice += total;
             totalquantity += ProductQuantity;
         }
-        //System.out.println(Product1);
-        //System.out.println(Product3);
         
         
+        //calculation for rebate
         rebate = discounts(Product1,Product3, Product4, rebate);
         
         if((totalprice>200)&&(totalprice<=500)){
@@ -208,9 +207,8 @@ public class PartBQ1 {
             discount1 = 0;
         }
         
-        //System.out.println(rebate);
-        //System.out.println(discount1*100);
         
+        //if rebate available, total price will deduct rebate
         if (rebate != 0)
             totalprice = totalprice - rebate;
         
@@ -218,7 +216,7 @@ public class PartBQ1 {
         double TotalPrice = totalprice - (totalprice*discount);
         TotalPrice = TotalPrice - (TotalPrice*discount1);
         TotalPrice = TotalPrice + (TotalPrice*0.06);
-        
+        //converting totalprice to 2 decimal points
         DecimalFormat df = new DecimalFormat("#.##");
         double NewTotalPrice = Double.parseDouble(df.format(TotalPrice));
         
@@ -227,6 +225,7 @@ public class PartBQ1 {
         while(counter>0){
         String e = JOptionPane.showInputDialog(null,"Total Price = RM"+NewTotalPrice+"\nEnter amount of your payment :","Payment",JOptionPane.QUESTION_MESSAGE);
         double pay = Double.parseDouble(e);
+        //making sure payment is enough to pay the bill
         if(pay>=NewTotalPrice){
         
             double balance = pay - TotalPrice;
@@ -244,7 +243,7 @@ public class PartBQ1 {
         String product1;
         double price1;
        
-        
+        //constructor
         Product(String code1, String product1, double price1){
             this.code1 = code1;
             this.product1 = product1;
@@ -262,16 +261,16 @@ public class PartBQ1 {
         else if(Product4 > 200)
             rebate += 25;
         
-        //System.out.println(rebate);
+        //rebate if more than RM 200
         
         
         return rebate;
     }
     
     public static void display(ArrayList code, ArrayList product, ArrayList Price, ArrayList Quantity,ArrayList Total, int NoProduct, int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
-        Date now = new Date();
+        Date now = new Date(); // date and time of purchase
         System.out.println(now); //2016/11/16 12:08:43
-        System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");
+        System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");//display output
         System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n");
         System.out.print("-----------------------------------------------------------------------------\n");
         for(int a = 0 ; a < NoProduct; a++){
