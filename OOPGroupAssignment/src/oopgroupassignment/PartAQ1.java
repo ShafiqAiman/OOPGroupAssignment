@@ -20,30 +20,32 @@ public class PartAQ1 {
     
     public static void Verify(int m){
         if (m!= 3){
-        JOptionPane.showMessageDialog(null, "Number invalid. Please reenter a three digit number", "ERROR", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Number invalid. Please re-enter a three digit number", "ERROR", JOptionPane.ERROR_MESSAGE);
+        System.exit(0);
         }
     }
     
     public static class Seperator{
         
-        public void Seperate(int m){
+        public void Seperate(int m){ //to extract a digit from an integer
            digit1= (m/100) % 10;
            digit2= (m/10) % 10;
            digit3 = m % 10;
         }
 
-        public Seperator() {
+        public Seperator() { //default constructor
         }
     }
     
     public static void main(String[] args) {
         
-        int lot = (int) (Math.random()*1000);
+        int lot = (int) (Math.random()*1000); //to generate a  random number
+        System.out.println(lot);
 
-        Seperator lotnumber= new Seperator();
+        Seperator lotnumber= new Seperator(); 
         lotnumber.Seperate(lot);
             
-             ArrayList lottery = new ArrayList();
+             ArrayList lottery = new ArrayList(); //holds the digits of the generated number 
              lottery.add(digit1);
              lottery.add(digit2);
              lottery.add(digit3);
@@ -57,13 +59,12 @@ public class PartAQ1 {
         Seperator inputnumber= new Seperator();
         inputnumber.Seperate(Intinput);
 
-             ArrayList input= new ArrayList();
+             ArrayList input= new ArrayList();  //holds the digits of the input 
              input.add(digit1);
              input.add(digit2);
              input.add(digit3);
-            
-            
-            boolean retval= input.containsAll(lottery);
+             
+            boolean retval= input.containsAll(lottery); // returns a true value when input has the same elements as lottery
             
             if (Objects.equals(input, lottery)){
                 JOptionPane.showMessageDialog(null,"Congrats, you just won RM5000!\nLottery number: "+lot, "Award", JOptionPane.INFORMATION_MESSAGE);
