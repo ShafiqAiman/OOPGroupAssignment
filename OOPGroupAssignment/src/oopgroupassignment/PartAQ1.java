@@ -40,7 +40,6 @@ public class PartAQ1 {
     public static void main(String[] args) {
         
         int lot = (int) (Math.random()*1000); //to generate a  random number
-        System.out.println(lot);
 
         Seperator lotnumber= new Seperator(); 
         lotnumber.Seperate(lot);
