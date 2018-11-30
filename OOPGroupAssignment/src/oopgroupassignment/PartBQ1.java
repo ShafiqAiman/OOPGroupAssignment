@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*UNIMY Transaction System
+ * This program is a program to calculate the bill for purchasing products. The program has eight products which are shoe, shirt, pants, jeans, fan, iron, tray and rice.
+ * The program also will calculate total discounts and deduct them from the total price.
+ * 
+ * @author (Mr Shafiq Aiman - B04180002)
+ * @version 1.0
  */
 package oopgroupassignment;
 
@@ -11,10 +13,7 @@ import javax.swing.JOptionPane;
 import java.util.Date;
 import java.text.*;
 
-/**
- *
- * @author Dr Shafiq Aiman
- */
+
 public class PartBQ1 {
     public static void main(String[] args){
         //ArrayList is used to store data of products,codes,prices,quantities and total
@@ -48,7 +47,7 @@ public class PartBQ1 {
         double discount1 = 0;
         int counter =1;
         //welcoming window
-        JOptionPane.showMessageDialog(null,"Welcome to UNIMY Online Store!","Output",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null,"Welcome to UNIMY Supermarket!","Output",JOptionPane.INFORMATION_MESSAGE);
          
         //window for asking the membership
         int a = JOptionPane.showConfirmDialog(null,
@@ -68,7 +67,7 @@ public class PartBQ1 {
         
         //displaying menu
         
-        String message = "------------------------------------------------UNIMY ONLINE STORE----------------------------------------------------\n"
+        String message = "------------------------------------------------UNIMY Supermarket--------------------------------------------------------\n"
                 + "------------------------------------------------------------------------------------------------------------------------------------\n"
                 + "|\tProduct Code\t|\tProduct\t|\tPrice\t|\n"
                 + "------------------------------------------------------------------------------------------------------------------------------------\n"
@@ -272,7 +271,7 @@ public class PartBQ1 {
             int totalquantity, String membershipstatus, double totalprice, double rebate, double discount1,double NewTotalPrice, double pay, double balance){
         Date now = new Date(); // date and time of purchase
         System.out.println(now); //2016/11/16 12:08:43
-        System.out.print("------------------------------UNIMY ONLINE STORE-----------------------------\n");//display output
+        System.out.print("------------------------------UNIMY Supermarket-----------------------------\n");//display output
         System.out.print("Code\t\tName\t\tPrice\t\tQuantity\t\tTotal\n\n");
         System.out.print("-----------------------------------------------------------------------------\n");
         for(int a = 0 ; a < NoProduct; a++){
