@@ -19,38 +19,38 @@ public class PartBQ2 {
         Subject Subject3 = new Subject("BIT2333","Interactive Multimedia",3);
         Subject Subject4 = new Subject("BIT1312","Multimedia Technology",2);
         Subject Subject5 = new Subject("BIE2243","Interaction Design",3);
-        
-        ArrayList name = new ArrayList();
-        ArrayList id = new ArrayList();
-        ArrayList ISMarks = new ArrayList();
-        ArrayList CMarks = new ArrayList();
-        ArrayList IMMarks = new ArrayList();
-        ArrayList IDMarks = new ArrayList();
-        ArrayList MTMarks = new ArrayList();
-        ArrayList ISGrade = new ArrayList();
-        ArrayList CMGrade = new ArrayList();
-        ArrayList IMGrade = new ArrayList();
-        ArrayList IDGrade = new ArrayList();
-        ArrayList MTGrade = new ArrayList();
-        ArrayList ISPoints = new ArrayList();
-        ArrayList CMPoints = new ArrayList();
-        ArrayList IMPoints = new ArrayList();
-        ArrayList IDPoints = new ArrayList();
-        ArrayList MTPoints = new ArrayList();
+          
+       ArrayList name = new ArrayList(); //Students name
+       ArrayList id = new ArrayList(); //Stdents ID
+       ArrayList ISMarks = new ArrayList(); //Marks for Information Systems
+       ArrayList CMarks = new ArrayList();//Marks for C Programming
+       ArrayList IMMarks = new ArrayList();//Marks for Interactive Multimedia
+       ArrayList IDMarks = new ArrayList();//Marks for Interaction Design
+       ArrayList MTMarks = new ArrayList();//Marks for Multimedia Technology
+       ArrayList ISGrade = new ArrayList();//Grade for Information Systems
+       ArrayList CMGrade = new ArrayList();//Grade for C Programming
+       ArrayList IMGrade = new ArrayList();//Grade for Interactive Multimedia
+       ArrayList IDGrade = new ArrayList();//Grade for Interactive Design
+       ArrayList MTGrade = new ArrayList();//Grade for Multimedia Technology
+       ArrayList ISPoints = new ArrayList();//Point for Information Systems
+       ArrayList CMPoints = new ArrayList();//Point for C Programming
+       ArrayList IMPoints = new ArrayList();//Point for Interactive Multimedia
+       ArrayList IDPoints = new ArrayList();//Point for Interactive Design
+       ArrayList MTPoints = new ArrayList();//Point for Multimedia Technology
 
         int marks = 0;
         String grade = "";
-        double TGPoints = 0;
-        double TCHours = 0;
+        double TGPoints = 0;//Grade Points
+        double TCHours = 0;//Credit hours
         float points = 0;
         String status = "";
         boolean done=false;
 
-        int TotalIS = 0;
-        int TotalCM = 0;
-        int TotalIM = 0;
-        int TotalMT = 0;
-        int TotalID = 0;
+        int TotalIS = 0;//Total points for Information Systems
+        int TotalCM = 0;//Total points for C Programming
+        int TotalIM = 0;//Total points for Interactive Multimedia
+        int TotalMT = 0;//Total points for Multimedia Technology
+        int TotalID = 0;//Total points for Interactive Design
 
         float averageIS = 0;
         float averageCM = 0;
@@ -61,7 +61,7 @@ public class PartBQ2 {
         String a = JOptionPane.showInputDialog(null,"Please enter the number of students :","Students",JOptionPane.QUESTION_MESSAGE);
         int NoStudents = Integer.parseInt(a);
         
-        for(int i = 0; i < NoStudents ; i++){
+        for(int i = 0; i < NoStudents ; i++){//counter
             String Name = JOptionPane.showInputDialog(null,"Please enter Student "+(i+1)+" name :","Marks",JOptionPane.QUESTION_MESSAGE);
             name.add(Name);
             
@@ -71,7 +71,7 @@ public class PartBQ2 {
                     String ID = JOptionPane.showInputDialog(null, "Please insert his or her student ID", "Exam Result System", JOptionPane.QUESTION_MESSAGE);
                     int j = ID.length();
                     if ((j < 4) || (j > 4)) {
-                        throw new MyException();
+                        throw new MyException();//Must be 4 integers
                     }
                     done=true;
                     id.add(ID);
@@ -81,6 +81,7 @@ public class PartBQ2 {
                 }
             }
             
+            //Information Systems
             String StrIS= JOptionPane.showInputDialog(null, "Please key in marks for Intro to Information Systems", "Exam Result System",JOptionPane.QUESTION_MESSAGE);  
             int intIS = Integer.parseInt(StrIS);
             ISMarks.add(intIS);
@@ -89,6 +90,7 @@ public class PartBQ2 {
             points = pointer(intIS,points);
             ISPoints.add(points);
             
+            //C Programming
             String StrCProg= JOptionPane.showInputDialog(null, "Please key in marks for C++ Programming 1", "Exam Result System",JOptionPane.QUESTION_MESSAGE);
             int intCProg = Integer.parseInt(StrCProg);  
             CMarks.add(intCProg);
@@ -97,6 +99,7 @@ public class PartBQ2 {
             points = pointer(intCProg,points);
             CMPoints.add(points);
             
+            //Interactive Multimedia
             String StrIM= JOptionPane.showInputDialog(null, "Please key in marks for Interactive Multimedia", "Exam Result System",JOptionPane.QUESTION_MESSAGE);
             int intIM = Integer.parseInt(StrIM);   
             IMMarks.add(intIM);
@@ -105,6 +108,7 @@ public class PartBQ2 {
             points = pointer(intIM,points);
             IMPoints.add(points);
             
+            //Multimedia Technology
             String StrMT= JOptionPane.showInputDialog(null, "Please key in marks for Multimedia Technology", "Exam Result System",JOptionPane.QUESTION_MESSAGE);
             int intMT = Integer.parseInt(StrMT);
             MTMarks.add(intMT);
@@ -113,6 +117,7 @@ public class PartBQ2 {
             points = pointer(intMT,points);
             MTPoints.add(points);
             
+            //Interactive Design
             String StrIDesign= JOptionPane.showInputDialog(null, "Please key in marks for Interaction Design", "Exam Result System",JOptionPane.QUESTION_MESSAGE);
             int intIDesign = Integer.parseInt(StrIDesign);   
             IDMarks.add(intIDesign);
@@ -121,6 +126,7 @@ public class PartBQ2 {
             points = pointer(intIDesign,points);
             IDPoints.add(points);
             
+            //Grade Points
             float GradePoints1 = (float)ISPoints.get(i)* Subject1.credit;
             float GradePoints2 = (float)CMPoints.get(i)* Subject2.credit;
             float GradePoints3 = (float)IMPoints.get(i)* Subject3.credit;
@@ -128,12 +134,13 @@ public class PartBQ2 {
             float GradePoints5 = (float)IDPoints.get(i)* Subject5.credit;
             float GPA = (GradePoints1 + GradePoints2 + GradePoints3 + GradePoints4 + GradePoints5)/15;
             
+            //Pass or Fail
             if ((GPA >= 2.00) && (GPA <= 4.00)) {
                 status = "PASS";
             } else if ((GPA >= 0.00) && (GPA < 2.00)) {
                 status = "FAIL";
             }
-
+             //Total Marks
             TotalIS += (int) ISMarks.get(i);
             TotalCM += (int) CMarks.get(i);
             TotalIM += (int) IMMarks.get(i);
@@ -195,7 +202,7 @@ public class PartBQ2 {
         if(averageID<lowest){
            highest=averageID;
            }
-        else if(highest==averageIS)//this if statements identify the best subject
+        else if(highest==averageIS)//this if statements identify the best subjects
             System.out.println("Best Subject :Intro to Information System");
         else if(highest==averageCM)
             System.out.println("Best Subject :C++ Programming");
@@ -237,6 +244,7 @@ public class PartBQ2 {
         }
     }
     
+    //Grading the sudents
     public static String grading(int marks, String grade){
         if((marks>=0) && (marks < 40)){
                 grade = "F";
