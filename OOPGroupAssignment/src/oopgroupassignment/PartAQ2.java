@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+ @author Mr Thyaga
+*/
 package oopgroupassignment;
 
 
@@ -15,12 +15,12 @@ public class PartAQ2 {
         int vowel=0;
         int consonant=0;       
      String a = JOptionPane.showInputDialog(null, "Please Enter A Name","Counter",JOptionPane.QUESTION_MESSAGE);    
-        String noSpace = a.replaceAll(" ",""); 
+        String noSpace = a.replaceAll(" ",""); //Delete the space
         total = noSpace.length();
-        if (total<3)
+        if (total<3)//Exeption
             JOptionPane.showMessageDialog(null,"Name must be more than 3 characters. Please try again.","COUNTER",JOptionPane.ERROR_MESSAGE);
         else{
-        String caps = noSpace.toUpperCase();              
+        String caps = noSpace.toUpperCase();//Convert string to uppercase              
         for(int i=0;i<=caps.length()-1;i++){ 
             if (caps.charAt(i)=='A'||caps.charAt(i)=='E'||caps.charAt(i)=='I'||caps.charAt(i)=='O'||caps.charAt(i)=='U')
                vowel++;                 
