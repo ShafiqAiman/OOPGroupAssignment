@@ -1,8 +1,9 @@
-/*
-
-
- @author Mr Thyaga
-*/
+/**
+ * Program Name : Name Counter
+ * This program will output the number of vowels and consonants in any string
+ * @author (Mr Thyaga B04180048)
+ * version 1.0
+ */
 package oopgroupassignment;
 
 

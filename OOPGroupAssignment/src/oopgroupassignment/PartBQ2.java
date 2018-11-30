@@ -1,8 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/**
+ *Program Name : GPA Calculator
+ *This program will output your grade and your GPA
+ *@author (Mr Thyaga B04180048) 
+ *@author (Mr Shafiq B04180002)
+ *@author (Mr Aiman B0418049)
+ **/
 package oopgroupassignment;
 
 import javax.swing.JOptionPane;
