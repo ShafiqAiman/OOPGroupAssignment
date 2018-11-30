@@ -56,7 +56,7 @@ public class PartBQ1 {
             "Choose One",
             JOptionPane.YES_NO_OPTION);
             
-        if(a == JOptionPane.YES_OPTION){
+        if(a == JOptionPane.YES_OPTION ){
             discount = 0.1;
             
             membershipstatus= "Yes";
